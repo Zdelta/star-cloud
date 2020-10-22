@@ -1,0 +1,152 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>星蕴</title>
+		<link rel="stylesheet" type="text/css" href="main.css" />
+	</head>
+
+	<body>
+		<canvas width="800" height="410"></canvas>
+		<button>切换</button>
+		<script src="star.js"></script>
+		<script>
+			function start() {
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				points = [{
+						name: "前端",
+						x: 520,
+						y: 96,
+						r: Math.random() * 4 + 4,
+						opacity: 1,
+						color: [200, 100, 200, ]
+					},
+					{
+						name: "js",
+						x: 499,
+						y: 141,
+						r: Math.random() * 4 + 4,
+						opacity: 1,
+						color: [30, 144, 255]
+					},
+					{
+						name: "css",
+						x: 488,
+						y: 192,
+						r: Math.random() * 4 + 4,
+						opacity: 1,
+						color: [130, 144, 255]
+					},
+					{
+						name: "html",
+						x: 411,
+						y: 213,
+						r: Math.random() * 4 + 4,
+						opacity: 1,
+						color: [130, 44, 255]
+					},
+					{
+						name: "vue",
+						x: 384,
+						y: 252,
+						r: Math.random() * 4 + 4,
+						opacity: 1,
+						color: [130, 44, 55]
+					},
+					{
+						name: "后端",
+						x: 334,
+						y: 242,
+						r: Math.random() * 6 + 4,
+						opacity: 1,
+						color: [30, 244, 55]
+					},
+					{
+						name: "C语言",
+						x: 335,
+						y: 272,
+						r: Math.random() * 2 + 4,
+						opacity: 1,
+						color: [30, 244, 255]
+					},
+					{
+						name: "数据结构",
+						x: 369,
+						y: 283,
+						r: Math.random() * 5 + 6,
+						opacity: 1,
+						color: [130, 244, 125]
+					},
+					{
+						name: "算法",
+						x: 418,
+						y: 270,
+						r: Math.random() * 5 + 6,
+						opacity: 1,
+						color: [155, 214, 225]
+					},
+					{
+						name: ".net",
+						x: 399,
+						y: 330,
+						r: Math.random() * 4 + 5,
+						opacity: 1,
+						color: [0, 214, 225]
+					},
+					{
+						name: "技能",
+						x: 470,
+						y: 342,
+						r: Math.random() * 2 + 5,
+						opacity: 1,
+						color: [0, 0, 225]
+					},
+				];
+				pointsBackup = JSON.parse(JSON.stringify(points));
+				drawLine();
+				drawText();
+				drawStar();
+			}
+
+
+			function go(number) {
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				let x = 0.5 * canvas.width;
+				let y = 0.5 * canvas.height;
+				let fudge = canvas.width / 30;
+				points = [];
+				for (let i = 0; i < number; i++) {
+					let point = {
+						name: i + 1 + "星",
+						x: x += ((Math.random() + .5) * fudge),
+						y: y += ((Math.random() + .5) * fudge),
+						r: Math.random() * 4 + 2,
+						opacity: 1,
+						color: [
+							200 + Math.random() * 55,
+							100 + Math.random() * 155,
+							200 + Math.random() * 55,
+						]
+					};
+					points.push(point);
+				}
+				pointsBackup = JSON.parse(JSON.stringify(points)); //深拷贝
+				drawLine();
+				drawText();
+				drawStar();
+			}
+			let flag = false;
+
+			function buttonSwitch() {
+				if (flag) {
+					go(10); //随机星星
+				} else {
+					start(); //搭配星蕴背景
+				}
+				flag = !flag;
+			}
+			document.querySelector('button').addEventListener('click', buttonSwitch);
+		</script>
+	</body>
+
+</html>
